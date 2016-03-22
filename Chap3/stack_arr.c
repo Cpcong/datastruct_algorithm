@@ -85,6 +85,7 @@ ElementType TopAndPop(Stack s)
     return s->arr[s->top--];
 }
 
+/*
 int main()
 {
     ElementType e1 = 1;
@@ -100,4 +101,4 @@ int main()
     DisposeStack(s);
     return 0;
 }
-
+*/

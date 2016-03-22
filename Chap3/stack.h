@@ -12,4 +12,5 @@ void MakeEmpty(Stack s);
 void Push(ElementType x, Stack s);
 ElementType Top(Stack s);
 void Pop(Stack s);
+ElementType TopAndPop(Stack s);
 #endif

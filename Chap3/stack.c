@@ -65,10 +65,21 @@ void Pop(Stack s){
     free(pNode);
 }
 
+ElementType TopAndPop(Stack s)
+{
+    ElementType e;
+    if(IsEmpty(s)){
+        printf("TopAndPop failed, Stack is empty\n");
+        exit(0);
+    }
+    e = Top(s);
+    Pop(s);
+    return e;
+
+}
 
 
-
-
+/*
 int main()
 {
     Stack s;
@@ -87,3 +98,4 @@ int main()
 
     return 0;
 }
+*/
