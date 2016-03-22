@@ -19,10 +19,5 @@ Position Header(const List L);
 Position First(const List L);
 ElementType Retrieve(const Position p);
 
-struct Node{
-    ElementType e;
-    Position next;
-};
-#define SPACE_SIZE 20
 
 #endif

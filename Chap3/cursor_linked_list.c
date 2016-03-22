@@ -3,8 +3,13 @@
 
 //freelist从索引0开始
 //索引1的位置为链表的header
-struct Node CursorSpace[SPACE_SIZE];
 
+struct Node{
+    ElementType e;
+    Position next;
+};
+#define SPACE_SIZE 20
+struct Node CursorSpace[SPACE_SIZE];
 void InitializeCursorSpace()
 {
     int i;
@@ -32,6 +37,7 @@ int MakeEmpty(List L)
 {
     Position p, p2;
     p2 = p = CursorSpace[L].next;
+    CursorSpace[L].next = 0;
     while(p){
         p2 = CursorSpace[p].next;
         CursorFree(p);
@@ -167,6 +173,9 @@ int main()
     MakeEmpty(l);
     printf("Iterate List: ");
     Iterate(l);
+
+    printf("Iterate Free list: ");
+    IterateFreeList();
 
     return 0;
 }
