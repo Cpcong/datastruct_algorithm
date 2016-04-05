@@ -42,20 +42,6 @@ static SplayTree SingleRotateWithRight(SplayTree k1)
     return k2;
 }
 
-static SplayTree DoubleRotateWithLeft(SplayTree k3)
-{
-    k3->left = SingleRotateWithRight(k3->left);
-    k3 = SingleRotateWithLeft(k3);
-    return k3;
-}
-
-static SplayTree DoubleRotateWithRight(SplayTree k1)
-{
-    k1->right = SingleRotateWithLeft(k1->right);
-    k1 = SingleRotateWithRight(k1);
-    return k1;
-}
-
 SplayTree MakeEmpty(SplayTree t)
 {
     if(t != NULL){
@@ -66,7 +52,7 @@ SplayTree MakeEmpty(SplayTree t)
     return NULL;
 }
 
-
+//之字型旋转通过L树，M树和右树的操作得到很好解决
 static SplayTree Splay(ElementType e, SplayTree t)
 {
 
