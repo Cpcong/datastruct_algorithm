@@ -2,9 +2,10 @@
 #include "stdlib.h"
 #include "hash_seq.h"
 #include "math.h"
+#include "string.h"
 
 struct ListNode{
-    ElementType e;
+    char e[20];
     Position next;
 };
 
@@ -39,7 +40,7 @@ static int Hash(char* key, int tableSize){
     while((*key) != '\0'){
         hashVal = hashVal << 5 + *key++; 
     }
-    return tableSize % tableSize;
+    return hashVal % tableSize;
 }
 
 HashTable InitializeTable(int tableSize)
@@ -75,6 +76,7 @@ void Destroy(HashTable h)
         }
         free(p);
     }
+    free(h->lists);
     free(h);
 }
 
@@ -84,7 +86,7 @@ Position Find(ElementType e, HashTable h)
     int hashVal = Hash(e, h->tableSize); 
     p = h->lists[hashVal];
     while(p->next != NULL){
-        if(p->next->e == e){
+        if(strcmp(p->next->e,e) == 0){
             return p->next; 
         }
         p = p->next;    
@@ -106,7 +108,7 @@ void Insert(ElementType e, HashTable h)
             exit(0);
         }
         header = h->lists[Hash(e, h->tableSize)];
-        p->e = e;
+        strcpy(p->e, e);
         p->next = header->next;
         header->next = p;
     } 
