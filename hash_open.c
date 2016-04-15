@@ -84,6 +84,7 @@ Position Find(ElementType e, HashTable h)
     while(h->theCells[cur].info != Empty && (strcmp(h->theCells[cur].e, e)) != 0){
         cur = cur + 2 * (cnt + 1) - 1; 
         cnt++;
+        //若元素过多,会导致cur增长太快，访问越界
         if(cur >= h->tableSize){
             cur = cur - h->tableSize; 
         }
@@ -106,6 +107,27 @@ ElementType Retrieve(Position p, HashTable h)
     return h->theCells[p].e;
 }
 
+HashTable ReHash(HashTable h)
+{
+    Cell *oldCells;
+    int oldSize;
+    int i;
+    int hashVal;
+    oldCells = h->theCells;
+    oldSize = h->tableSize;
+    //free(h);
+    h = InitializeTable(2 * oldSize);
+    for(i = 0;i < oldSize;i++){
+        if(oldCells[i].info == Legitimate){
+            Insert(oldCells[i].e, h);
+        }
+    }
+    free(oldCells);
+    return h;
+
+
+}
+
 int main()
 {
     char *e = "hello";
@@ -118,6 +140,13 @@ int main()
     printf("%s\n", Retrieve(p, h));
     p = Find(e, h); 
     printf("%s\n", Retrieve(p, h));
-    DestroyTable(h);
+    //DestroyTable(h);
+    h = ReHash(h);
+    
+    p = Find(e2, h); 
+    printf("%s\n", Retrieve(p, h));
+    p = Find(e, h); 
+    printf("%s\n", Retrieve(p, h));
+    
     return 0;
 }
