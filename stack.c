@@ -79,6 +79,19 @@ ElementType TopAndPop(Stack s)
 }
 
 
+int Size(Stack s)
+{
+    int size = 0;
+    if(s == NULL){
+        printf("stack must be initialized before Size\n"); 
+        exit(0);
+    }
+    while(s->next != NULL){
+        size++; 
+        s = s->next;
+    }
+    return size;
+}
 /*
 int main()
 {
