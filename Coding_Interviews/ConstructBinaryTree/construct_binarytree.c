@@ -91,12 +91,14 @@ pBinaryTreeNode ConstructCore(int *startPreOrder, int *endPreOrder, int *startIn
     //得到左子树前序序列尾指针
     int *leftPreOrderEnd = startPreOrder + leftLength;
 
-
+    //中序序列根结点左子树长度大于0
     if(leftLength > 0){
+        //构建左子树
         root->left = ConstructCore(startPreOrder + 1, leftPreOrderEnd, startInOrder, rootInOrder - 1); 
     }
     //中序序列中根节点左边序列的长度小于前序序列的长度,所以存在右子树，且差值为右子树长度
     if(leftLength < endPreOrder - startPreOrder){
+        //构建右子树
         root->right = ConstructCore(leftPreOrderEnd + 1, endPreOrder, rootInOrder + 1, endInOrder); 
     }
     return root;
