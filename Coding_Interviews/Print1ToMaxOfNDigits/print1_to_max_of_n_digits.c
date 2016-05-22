@@ -28,6 +28,7 @@ int Increment(char *number)
         intNum = number[i] - '0';
         //检查进位
         if(intNum >= 10){
+            //当第0位产生进位时，则已经是最大的n位数
             if(i == 0){
                 isMax = 1; 
             }else{
