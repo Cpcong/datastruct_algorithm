@@ -42,9 +42,11 @@ struct ListNode* Test(struct ListNode* pHead)
 {
     printf("The original list is:\n");
     PrintList(pHead);
+    /*
     struct ListNode* pReversedHead = ReverseList(pHead);
     printf("The reversed list is: \n");
     PrintList(pReversedHead);
+    */
     struct ListNode *pReversedHead = ReverseListRecursively(pHead);
     printf("The reversed list(Recursive) is: \n");
     PrintList(pReversedHead);
