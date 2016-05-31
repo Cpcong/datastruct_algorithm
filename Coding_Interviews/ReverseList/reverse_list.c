@@ -25,6 +25,18 @@ struct ListNode* ReverseList(struct ListNode* pHead)
     return pReversedHead;
 }
 
+//递归法
+struct ListNode* ReverseListRecursively(struct ListNode* pHead)
+{
+    if(pHead == NULL || pHead->next == NULL){
+        return pHead; 
+    }
+    struct ListNode *newHead = ReverseListRecursively(pHead->next); 
+    pHead->next->next = pHead;
+    pHead->next = NULL;
+    return newHead;
+}
+
 //=============测试代码============
 struct ListNode* Test(struct ListNode* pHead)
 {
@@ -32,6 +44,9 @@ struct ListNode* Test(struct ListNode* pHead)
     PrintList(pHead);
     struct ListNode* pReversedHead = ReverseList(pHead);
     printf("The reversed list is: \n");
+    PrintList(pReversedHead);
+    struct ListNode *pReversedHead = ReverseListRecursively(pHead);
+    printf("The reversed list(Recursive) is: \n");
     PrintList(pReversedHead);
     return pReversedHead; 
 }
